@@ -12,7 +12,8 @@ function App() {
     chrome.scripting.executeScript({
       target: { tabId: tab.id! },
       func: () => {
-        alert("Hello from my extension!")
+        // alert("Hello from my extension!")
+        document.body.style.backgroundColor = "#bfdbfe"
       },
     })
   }
