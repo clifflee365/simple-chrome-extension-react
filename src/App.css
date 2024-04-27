@@ -37,6 +37,22 @@
   padding: 2em;
 }
 
+.operation{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.tips{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  /* justify-content: center;
+  align-items: center; */
+  text-align: left;
+}
+
 .read-the-docs {
   color: #888;
 }

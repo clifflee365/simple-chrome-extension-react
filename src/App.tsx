@@ -1,19 +1,21 @@
-// import { useState } from "react"
+import { useState } from "react"
 import reactLogo from "./assets/react.svg"
 import viteLogo from "/vite.svg"
 import "./App.css"
 
 function App() {
   // const [count, setCount] = useState(0)
+  const [color, setColor] = useState("#bfdbfe")
 
   const handleClick = async () => {
     const [tab] = await chrome.tabs.query({ active: true })
 
     chrome.scripting.executeScript({
       target: { tabId: tab.id! },
-      func: () => {
+      args: [color],
+      func: (color) => {
         // alert("Hello from my extension!")
-        document.body.style.backgroundColor = "#bfdbfe"
+        document.body.style.backgroundColor = color
       },
     })
   }
@@ -30,13 +32,22 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={handleClick}>Click Me</button>
-        {/* <button onClick={() => setCount((count) => count + 1)}>
+        <div className="operation">
+          <input
+            type="color"
+            onChange={(e) => setColor(e.currentTarget.value)}
+            value={color}
+          />
+
+          <button onClick={handleClick}>🎨 Change</button>
+          {/* <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button> */}
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        </div>
+        <div className="tips">
+          <p>1. Click on the color palette to select a color</p>
+          <p>2. Click the Change button</p>
+        </div>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
